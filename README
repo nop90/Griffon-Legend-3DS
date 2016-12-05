@@ -1,0 +1,53 @@
+
+                            The Griffon Legend 
+                            ==================
+
+              Originally written by Syn9 in FreeBASIC with SDL
+              http://syn9.thehideoutgames.com/index_backup.php
+
+            Ported to plain C for GCW-Zero handheld by Dmitry Smagin
+                http://github.com/dmitrysmagin/griffon_legend
+				
+			  Ported to 3DS by NOP90 for the GBATEMP community
+                 http://github.com/nop90/Griffon-Legend-3DS
+
+                 Programming/Graphics: Daniel "Syn9" Kennedy
+                     Music/Sound effects: David Turner
+
+                   Beta testing and gameplay design help:
+                    Deleter, Cha0s, Aether Fox, and Kiz
+
+Introduction
+============
+
+The Griffon Legend is an action RPG with screen-to-screen map. It features
+original storyline and design made in 16-bit style RPG's of SNES/GENESIS era.
+
+During gameplay you can see up to 3 bars below your character. The top is
+health, the next is attack strength (let it charge to hit harder) and then
+spell strangth (same as attack). When you learn new spells you will see their
+icons in the bottom right corner with a meter below them to show them charging.
+When the meter turns orange they are ready for use.
+
+Some history
+============
+
+Originally The Griffon Legend was written in FreeBASIC (http://freebasic.net/)
+using SDL for graphics and FMOD for sound/music. That restricted the game to
+be released for Windows only. Now The Griffon Legend is rewritten in plain C
+using SDL and SDL_mixer for better portability, the source code is licensed
+under GPL2 license (see COPYING). All non source code assets are licensed under
+Creative Commons and are copyright of their respective authors.
+
+The 3DS version uses a fake 3DS SDL layer made by NOP90 and some open source 
+libs: ctrulib, citro3d, sf2d, sfil, libnsbmp, stb_vorbis 
+
+3DS controls
+=============
+
+PAD  - moving
+A    - attack / select
+B    - open/close item menu
+X    - main menu / back
+
+
