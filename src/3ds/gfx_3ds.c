@@ -458,7 +458,8 @@ void SDL_UnlockSurface(SDL_Surface* s){}
 
 void PutPixel32(SDL_Surface * s, int x, int y, u32 color)
 {
-	sf2d_set_pixel(s->texture,x,y,color);
+	if (s->texture != (SDL_Surface*)1 && s->texture != (SDL_Surface*)2)
+		sf2d_set_pixel(s->texture,x,y,color);
 }
 
 u32 GetPixel32(SDL_Surface * s, int x, int y)
@@ -471,3 +472,7 @@ u32 GetPixel32(SDL_Surface * s, int x, int y)
 	return sf2d_get_pixel(s->texture,x,y);
 }
 
+void drawline(int x1, int y1, int x2, int y2, u32 col)
+{
+	sf2d_draw_line(x1*scalepos+40*offset, y1, x2*scalepos+40*offset, y2, 1,col);
+}

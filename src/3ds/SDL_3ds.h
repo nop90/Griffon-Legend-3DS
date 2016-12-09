@@ -464,6 +464,7 @@ void SDL_Flip(void * p);
 void SDL_GL_SwapBuffers();
 void PutPixel32(SDL_Surface * s, int x, int y, u32 color);
 u32 GetPixel32(SDL_Surface * s, int x, int y);
+void drawline(int x1, int y1, int x2, int y2, u32 col);
 
 typedef struct SDL_RWops
 {

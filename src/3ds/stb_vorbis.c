@@ -4884,7 +4884,7 @@ int stb_vorbis_decode_filename(const char *filename, int *channels, int *sample_
    short *data;
    stb_vorbis *v = stb_vorbis_open_filename(filename, &error, NULL);
    if (v == NULL) return -1;
-   limit = v->channels * 4096;
+   limit = v->channels * 4096; 
    *channels = v->channels;
    if (sample_rate)
       *sample_rate = v->sample_rate;

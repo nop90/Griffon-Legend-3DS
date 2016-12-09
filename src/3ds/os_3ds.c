@@ -20,7 +20,8 @@ int SDL_Init(int flag) //returns 0 on success, -1 on failure
 
 	if(flag & SDL_INIT_VIDEO)
 	{
-		sf2d_init(); 
+		sf2d_init();
+ 
 		sf2d_set_3D(false);
 		sf2d_set_vblank_wait(true);
 		

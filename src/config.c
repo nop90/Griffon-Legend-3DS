@@ -29,7 +29,7 @@
 	320, 240, 16, 0, 0, 0, 1, 127, 1, 127
 };
 
-char config_ini[64] = "3ds/GriffonLegend/config.ini";
+char config_ini[64] = "/3ds/GriffonLegend/config.ini";
 
 #define PRINT(A,B) 			\
 do {					\

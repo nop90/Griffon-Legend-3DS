@@ -81,10 +81,11 @@
 #define FPS 30
 
 // system
-SDL_Surface *video, *videobuffer, *videobuffer2, *videobuffer3, *bottomvideo;
+SDL_Surface *video, *videobuffer, *bottomvideo; //, *videobuffer2, *videobuffer3;
 SDL_Surface *titleimg, *titleimg2, *inventoryimg;
 SDL_Surface *logosimg, *theendimg;
 SDL_Surface *loadimg;
+SDL_Surface *configwindow;
 SDL_Event event;
 
 SDL_Surface *mapbg;
@@ -193,11 +194,11 @@ NPCTYPE npcinfo[MAXNPC];
 int lastnpc;
 
 // music info
-Mix_Chunk *mgardens, *mgardens2, *mgardens3, *mgardens4, *mboss, *mmenu, *mendofgame;
-int menabled=0;//1
+Mix_Chunk *mgardens, *mboss, *mmenu, *mendofgame; //*mgardens2, *mgardens3, *mgardens4, 
+int menabled=1;
 int musicchannel = -1, menuchannel = -1;
 int pgardens, pboss, ptown, pacademy, pcitadel;
-int loopseta = 0;
+//int loopseta = 0;
 
 Mix_Chunk *sfx[21];
 
@@ -485,8 +486,8 @@ void game_attack()
 					objmapf[curmap][lx][ly - 1] = 1;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -498,8 +499,8 @@ void game_attack()
 
 				if(oscript == 0 && player.inventory[INV_FLASK] == 9) {
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndchest], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndchest], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					game_eventtext("Cannot Carry any more Flasks!");
@@ -519,8 +520,8 @@ void game_attack()
 					if(curmap == 81) scriptflag[13][0] = 2;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -535,8 +536,8 @@ void game_attack()
 					game_addFloatIcon(7, lx * 16, (ly - 1) * 16);
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -554,8 +555,8 @@ void game_attack()
 					itemticks = ticks + 215;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -573,8 +574,8 @@ void game_attack()
 					itemticks = ticks + 215;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -593,8 +594,8 @@ void game_attack()
 						}
 
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						objmapf[curmap][lx][ly - 1] = 1;
@@ -605,8 +606,8 @@ void game_attack()
 						game_addFloatIcon(16, lx * 16, (ly - 1) * 16);
 					} else {
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[sndchest], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[sndchest], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						game_eventtext("Cannot Carry Any More Keys");
@@ -620,8 +621,8 @@ void game_attack()
 					objmapf[curmap][lx][ly - 1] = 1;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -633,8 +634,8 @@ void game_attack()
 
 				if(oscript == 7 && player.inventory[INV_DOUBLEFLASK] == 9) {
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndchest], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndchest], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					game_eventtext("Cannot Carry any more Mega Flasks!");
@@ -649,8 +650,8 @@ void game_attack()
 					objmapf[curmap][lx][ly - 1] = 1;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -662,8 +663,8 @@ void game_attack()
 
 				if(oscript == 10 && player.inventory[INV_DOUBLEFLASK] == 9) {
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndchest], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndchest], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					game_eventtext("Cannot Carry any more Mega Flasks!");
@@ -678,8 +679,8 @@ void game_attack()
 					objmapf[curmap][lx][ly - 1] = 1;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -691,8 +692,8 @@ void game_attack()
 
 				if(oscript == 11 && player.inventory[INV_SHOCK] == 9) {
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndchest], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndchest], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					game_eventtext("Cannot Carry any more Lightning Bombs!");
@@ -706,8 +707,8 @@ void game_attack()
 					game_addFloatIcon(5, lx * 16, (ly - 1) * 16);
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -722,14 +723,14 @@ void game_attack()
 						scriptflag[60][0] = 1;
 
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[sndlever], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[sndlever], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 					} else if(curmap == 58 && scriptflag[60][0] > 0) {
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						game_eventtext("It's stuck!");
@@ -737,15 +738,15 @@ void game_attack()
 
 					if(curmap == 54 && scriptflag[60][0] == 1) {
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[sndlever], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[sndlever], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						scriptflag[60][0] = 2;
 					} else if(curmap == 54 && scriptflag[60][0] > 1) {
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						game_eventtext("It's stuck!");
@@ -761,8 +762,8 @@ void game_attack()
 					itemticks = ticks + 215;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -777,8 +778,8 @@ void game_attack()
 					itemticks = ticks + 215;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -793,8 +794,8 @@ void game_attack()
 					itemticks = ticks + 215;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					if(objectinfo[o][4] == 1) objmap[lx][ly - 1] = 3;
@@ -889,14 +890,14 @@ void game_castspell(int spellnum, float homex, float homey, float enemyx, float 
 
 			if(menabled == 1 && config.effects == 1) {
 				if(spellnum == 1) {
-					int snd = Mix_PlayChannel(-1, sfx[sndthrow], 0);
-					Mix_Volume(snd, config.effectsvol);
+					/* int snd = */ Mix_PlayChannel(-1, sfx[sndthrow], 0);
+//					Mix_Volume(snd, config.effectsvol);
 				} else if(spellnum == 5) {
-					int snd = Mix_PlayChannel(-1, sfx[sndcrystal], 0);
-					Mix_Volume(snd, config.effectsvol);
+					/* int snd = */ Mix_PlayChannel(-1, sfx[sndcrystal], 0);
+//					Mix_Volume(snd, config.effectsvol);
 				} else if(spellnum == 8 || spellnum == 9) {
-					int snd = Mix_PlayChannel(-1, sfx[sndlightning], 0);
-					Mix_Volume(snd, config.effectsvol);
+					/* int snd = */ Mix_PlayChannel(-1, sfx[sndlightning], 0);
+//					Mix_Volume(snd, config.effectsvol);
 				}
 			}
 
@@ -937,8 +938,8 @@ void game_checkhit()
 
 					if(hit == 1) {
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[sndswordhit], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[sndswordhit], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 
 						game_damagenpc(i, damage, 0);
@@ -1017,8 +1018,8 @@ void game_checkinputs()
 					player.inventory[INV_FLASK]--;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					itemselon = 0;
@@ -1042,8 +1043,8 @@ void game_checkinputs()
 					player.inventory[INV_DOUBLEFLASK]--;
 
 					if(menabled == 1 && config.effects == 1) {
-						int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-						Mix_Volume(snd, config.effectsvol);
+						/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//						Mix_Volume(snd, config.effectsvol);
 					}
 
 					itemselon = 0;
@@ -1270,7 +1271,6 @@ void game_checktrigger()
 
 void game_configmenu()
 {
-	SDL_Surface *configwindow;
 	SDL_Rect rc;
 	int cursel, curselt, ofullscreen;
 	int ticks1; //, keypause, tickwait 
@@ -1280,12 +1280,6 @@ void game_configmenu()
 	ticks = SDL_GetTicks();
 //	tickwait = 100;
 //	keypause = ticks + tickwait;
-
-	configwindow = SDL_DisplayFormat(videobuffer);
-
-	configwindow = IMG_Load("romfs:/art/configwindow.bmp");
-	SDL_SetColorKey(configwindow, SDL_SRCCOLORKEY, SDL_MapRGB(configwindow->format, 255, 0, 255));
-	SDL_SetAlpha(configwindow, SDL_SRCALPHA, 160);
 
 	ticks1 = ticks;
 	do {
@@ -1407,7 +1401,7 @@ void game_configmenu()
 		}
 
 //		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)yy);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
 //		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		SDL_Flip(video);
@@ -1444,19 +1438,20 @@ void game_configmenu()
 						config.musicvol = config.musicvol - 25;
 						if(config.musicvol < 0) config.musicvol = 0;
 
-						Mix_Volume(musicchannel, config.musicvol);
-						Mix_Volume(menuchannel, config.musicvol);
+						Mix_VolumeMusic(config.musicvol);
+//						Mix_Volume(musicchannel, config.musicvol);
+//						Mix_Volume(menuchannel, config.musicvol);
 					} else if(cursel == 12) {
 						config.effectsvol = config.effectsvol - 25;
 						if(config.effectsvol < 0) config.effectsvol = 0;
 
 						Mix_Volume(-1, config.effectsvol);
-						Mix_Volume(musicchannel, config.musicvol);
-						Mix_Volume(menuchannel, config.musicvol);
+//						Mix_Volume(musicchannel, config.musicvol);
+//						Mix_Volume(menuchannel, config.musicvol);
 
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 					}
 				}
@@ -1465,19 +1460,20 @@ void game_configmenu()
 						config.musicvol = config.musicvol + 25;
 						if(config.musicvol > 255) config.musicvol = 255;
 
-						Mix_Volume(musicchannel, config.musicvol);
-						Mix_Volume(menuchannel, config.musicvol);
+						Mix_VolumeMusic(config.musicvol);
+//						Mix_Volume(musicchannel, config.musicvol);
+//						Mix_Volume(menuchannel, config.musicvol);
 					} else if(cursel == 12) {
 						config.effectsvol = config.effectsvol + 25;
 						if(config.effectsvol > 255) config.effectsvol = 255;
 
 						Mix_Volume(-1, config.effectsvol);
-						Mix_Volume(musicchannel, config.musicvol);
-						Mix_Volume(menuchannel, config.musicvol);
+//						Mix_Volume(musicchannel, config.musicvol);
+//						Mix_Volume(menuchannel, config.musicvol);
 
 						if(menabled == 1 && config.effects == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 					}
 				}
@@ -1562,20 +1558,21 @@ void game_configmenu()
 					if(cursel == 7 && config.music == 0) {
 						config.music = 1;
 						if(menabled == 1) {
-							menuchannel = Mix_PlayChannel(-1, mmenu, -1);
-							Mix_Volume(menuchannel, config.musicvol);
+//							Mix_VolumeMusic(config.musicvol);
+							menuchannel = Mix_PlayMusic(mmenu, -1);
+							pmenu = 1;
+
 						}
 					}
 					if(cursel == 8 && config.music == 1) {
 						config.music = 0;
-						Mix_HaltChannel(musicchannel);
-						Mix_HaltChannel(menuchannel);
+						Mix_HaltMusic();
 					}
 					if(cursel == 9 && config.effects == 0) {
 						config.effects = 1;
 						if(menabled == 1) {
-							int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-							Mix_Volume(snd, config.effectsvol);
+							/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//							Mix_Volume(snd, config.effectsvol);
 						}
 					}
 
@@ -1602,7 +1599,6 @@ void game_configmenu()
 		SDL_Delay(10);
 	} while(1);
 
-	SDL_FreeSurface(configwindow);
 	itemticks = ticks + 210;
 
 //	SDL_SetAlpha(cloudimg, SDL_SRCALPHA, 64);
@@ -2155,7 +2151,7 @@ void game_drawhud()
 
 	long ccc;
 
-	game_fillrect(videobuffer2, 0, 0, 320, 240, 0);
+//	game_fillrect(videobuffer2, 0, 0, 320, 240, 0);
 
 	for(int i = 0; i < MAXFLOATTXR; i++) {
 		if(floattext[i][0] > 0) {
@@ -2186,7 +2182,7 @@ void game_drawhud()
 
 			if(ico != 99) SDL_BlitSurface(itemimg[ico], NULL, videobuffer, &rcDest);
 			if(ico == 99) {
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, (int)(RND() * 96) + 96);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, (int)(RND() * 96) + 96);
 
 				rcSrc.x = 16 * (int)(RND() * 2);
 				rcSrc.y = 80;
@@ -2198,7 +2194,7 @@ void game_drawhud()
 
 				SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
 
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 			}
 		}
 	}
@@ -2234,9 +2230,9 @@ void game_drawhud()
 		rcDest.y = 0;
 		rcDest.w = 320;
 		rcDest.h = 240;
-		SDL_SetAlpha(videobuffer2, SDL_SRCALPHA, (int)(player.itemselshade * 4));
-		SDL_FillRect(videobuffer2, &rcDest, 0);
-		SDL_BlitSurface(videobuffer2, NULL, videobuffer, NULL);
+//		SDL_SetAlpha(videobuffer2, SDL_SRCALPHA, (int)(player.itemselshade * 4));
+//		SDL_FillRect(videobuffer2, &rcDest, 0);
+//		SDL_BlitSurface(videobuffer2, NULL, videobuffer, NULL);
 
 		int sy = 202;
 		rcSrc.x = 46;
@@ -2566,9 +2562,9 @@ void game_drawnpcs(int mode)
 
 							int x = 192 + ((int)(itemyloc + ff * 5) % 3) * 64;
 							if(x > 255) x = 255;
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, x);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, x);
 							SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 							for(int f = 1; f <= 8; f++) {
 								rcSrc.x = 16 * (int)(RND() * 2);
@@ -2581,9 +2577,9 @@ void game_drawnpcs(int mode)
 
 								x = 192 + f % 3 * 64;
 								if(x > 255) x = 255;
-								SDL_SetAlpha(spellimg, SDL_SRCALPHA, x);
+//								SDL_SetAlpha(spellimg, SDL_SRCALPHA, x);
 								SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
-								SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//								SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 							}
 
 							rcSrc.x = 0;
@@ -2594,9 +2590,9 @@ void game_drawnpcs(int mode)
 							rcDest.x = npcinfo[i].bodysection[10 * ff + 9].x - 21;
 							rcDest.y = npcinfo[i].bodysection[10 * ff + 9].y - 21;
 
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192);
 							SDL_BlitSurface(anims[5], &rcSrc, videobuffer, &rcDest);
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 						}
 
@@ -2766,7 +2762,7 @@ void game_drawnpcs(int mode)
 					int sy = (float)(npy + 12 - 50 - 3 * sin(3.141592 * 2 * npcinfo[i].floating / 16));
 
 					for(int fr = 0; fr <= 3; fr++) {
-						SDL_SetAlpha(spellimg, SDL_SRCALPHA, 128 + (int)(RND() * 96));
+//						SDL_SetAlpha(spellimg, SDL_SRCALPHA, 128 + (int)(RND() * 96));
 
 						rcSrc.x = 16 * (int)(RND() * 2);
 						rcSrc.y = 80;
@@ -2792,7 +2788,7 @@ void game_drawnpcs(int mode)
 							rcDest.x = (float)(sx + 36 + ii * 8 - ii * cos(3.14159 * 2 * (fr3 - ii) / 16) * 2);
 							rcDest.y = (float)(sy + 16 + ii * sin(3.14159 * 2 * (fr3 - ii) / 16) * 3 - ii); //  * 4
 
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, i2 / 3 * 224);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, i2 / 3 * 224);
 
 							SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
 
@@ -2807,8 +2803,8 @@ void game_drawnpcs(int mode)
 								if(player.hp > 0) {
 									game_damageplayer(damage);
 									if(menabled == 1 && config.effects == 1) {
-										int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-										Mix_Volume(snd, config.effectsvol);
+										/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//										Mix_Volume(snd, config.effectsvol);
 									}
 								}
 
@@ -2818,7 +2814,7 @@ void game_drawnpcs(int mode)
 							rcDest.x = (float)(sx + 36 - ii * 8 + ii * cos(3.14159 * 2 * (fr3 - ii) / 16) * 2);
 							rcDest.y = (float)(sy + 16 + ii * sin(3.14159 * 2 * (fr3 - ii) / 16) * 3 - ii); //  * 4
 
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, i2 / 3 * 224);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, i2 / 3 * 224);
 
 							SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
 
@@ -2833,15 +2829,15 @@ void game_drawnpcs(int mode)
 								if(player.hp > 0) {
 									game_damageplayer(damage);
 									if(menabled == 1 && config.effects == 1) {
-										int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-										Mix_Volume(snd, config.effectsvol);
+										/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//										Mix_Volume(snd, config.effectsvol);
 									}
 								}
 							}
 						}
 					}
 
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 					if(npcinfo[i].attacking == 0) {
 						int cframe = (int)(frame);
@@ -3139,29 +3135,30 @@ void game_endofgame()
 	float spd = 0.2;
 
 	if(menabled == 1 && config.music == 1) {
-		Mix_HaltChannel(-1);
-		musicchannel = Mix_PlayChannel(-1, mendofgame, -1);
-		Mix_Volume(musicchannel, 0);
+//		Mix_HaltChannel(-1);
+//		Mix_HaltMusic();
+//		Mix_Volume(musicchannel, 0);
+		musicchannel = Mix_PlayMusic(mendofgame, -1);
 	}
 
 	ticks1 = ticks;
 	int ya = 0;
 
-	SDL_FillRect(videobuffer2, NULL, 0);
-	SDL_FillRect(videobuffer3, NULL, 0);
+//	SDL_FillRect(videobuffer2, NULL, 0);
+//	SDL_FillRect(videobuffer3, NULL, 0);
 //	SDL_BlitSurface(videobuffer, NULL, videobuffer2, NULL);
 
-	float ld = 0;
+/*	float ld = 0;
 	int ldstop = 0;
-
+*/
 	do {
-		ld = ld + 4 * fpsr;
+/*		ld = ld + 4 * fpsr;
 		if(ld > config.musicvol) ld = config.musicvol;
 		if(menabled == 1 && ldstop == 0) {
-			Mix_Volume(musicchannel, (int)ld);
+//			Mix_Volume(musicchannel, (int)ld);
 			if((int)ld == config.musicvol) ldstop = 1;
 		}
-
+*/
 		ya = 0;
 		if(ticks < ticks1 + 1500) {
 			ya = (255 * (ticks - ticks1)) / 1500;
@@ -3173,11 +3170,11 @@ void game_endofgame()
 
 		SDL_FillRect(videobuffer, NULL, 0);
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, ya);
-		SDL_BlitSurface(videobuffer2, NULL, videobuffer3, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, ya);
+//		SDL_BlitSurface(videobuffer2, NULL, videobuffer3, NULL);
 //		SDL_BlitSurface(videobuffer, NULL, videobuffer3, NULL);
-		SDL_BlitSurface(videobuffer3, NULL, video, NULL);
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+//		SDL_BlitSurface(videobuffer3, NULL, video, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -3231,9 +3228,9 @@ void game_endofgame()
 			if(ya > 255) ya = 255;
 		}
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, ya);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, ya);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -3282,11 +3279,11 @@ void game_endofgame()
 
 		SDL_FillRect(videobuffer, NULL, 0);
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, y);
-		SDL_BlitSurface(videobuffer2, NULL, videobuffer3, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, y);
+//		SDL_BlitSurface(videobuffer2, NULL, videobuffer3, NULL);
 //		SDL_BlitSurface(videobuffer, NULL, videobuffer3, NULL);
-		SDL_BlitSurface(videobuffer3, NULL, video, NULL);
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+//		SDL_BlitSurface(videobuffer3, NULL, video, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -3321,9 +3318,9 @@ void game_endofgame()
 			if(y > 255) y = 255;
 		}
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, y);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, y);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -3348,8 +3345,8 @@ void game_endofgame()
 
 	} while(1);
 
-	SDL_FillRect(videobuffer2, NULL, 0);
-	SDL_FillRect(videobuffer3, NULL, 0);
+//	SDL_FillRect(videobuffer2, NULL, 0);
+//	SDL_FillRect(videobuffer3, NULL, 0);
 
 	game_theend();
 
@@ -3359,8 +3356,8 @@ void game_eventtext(char *stri)
 {
 	int x, fr, pauseticks, bticks;
 
-	SDL_FillRect(videobuffer2, NULL, 0);
-	SDL_FillRect(videobuffer3, NULL, 0);
+//	SDL_FillRect(videobuffer2, NULL, 0);
+//	SDL_FillRect(videobuffer3, NULL, 0);
 
 	x = 160 - 4 * strlen(stri);
 
@@ -3377,8 +3374,10 @@ void game_eventtext(char *stri)
 
 		if(!lockkeys) {
 			if(event.type == SDL_KEYDOWN || event.type == SDL_JOYBUTTONDOWN) {
-				lockkeys = true;
-				break;
+				if(event.key.keysym.sym&SDLK_RETURN) {
+					lockkeys = true;
+					break;
+				}
 			}
 		} else 
 			if(!keys) lockkeys= false;
@@ -3398,7 +3397,7 @@ void game_eventtext(char *stri)
 		if(pauseticks < ticks) sys_print(videobuffer, stri, x, 15, 0);
 
 //		SDL_SetAlpha(windowimg, SDL_SRCALPHA, 255);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -3624,8 +3623,8 @@ void game_handlewalking()
 			objmapf[curmap][lx][ly] = 1;
 
 			if(menabled == 1 && config.effects == 1) {
-				int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-				Mix_Volume(snd, config.effectsvol);
+				/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//				Mix_Volume(snd, config.effectsvol);
 			}
 		}
 
@@ -3638,8 +3637,8 @@ void game_handlewalking()
 			objmapf[curmap][lx][ly] = 1;
 
 			if(menabled == 1 && config.effects == 1) {
-				int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-				Mix_Volume(snd, config.effectsvol);
+				/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//				Mix_Volume(snd, config.effectsvol);
 			}
 		}
 
@@ -3653,8 +3652,8 @@ void game_handlewalking()
 			if(curmap == 41) scriptflag[9][1] = 1;
 
 			if(menabled == 1 && config.effects == 1) {
-				int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-				Mix_Volume(snd, config.effectsvol);
+				/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//				Mix_Volume(snd, config.effectsvol);
 			}
 
 		}
@@ -3668,8 +3667,8 @@ void game_handlewalking()
 			objmapf[curmap][lx][ly] = 1;
 
 			if(menabled == 1 && config.effects == 1) {
-				int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-				Mix_Volume(snd, config.effectsvol);
+				/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//				Mix_Volume(snd, config.effectsvol);
 			}
 
 		}
@@ -4477,8 +4476,8 @@ void game_newgame()
 	float ld = 0, add;
 	int ticks, cnt = 0;
 
-	SDL_FillRect(videobuffer2, NULL, 0);
-	SDL_FillRect(videobuffer3, NULL, 0);
+//	SDL_FillRect(videobuffer2, NULL, 0);
+//	SDL_FillRect(videobuffer3, NULL, 0);
 
 	ticks = SDL_GetTicks();
 
@@ -4489,26 +4488,27 @@ void game_newgame()
 	int y = 140;
 
 	if(menabled == 1 && config.music == 1) {
-		Mix_HaltChannel(-1);
-		musicchannel = Mix_PlayChannel(-1, mendofgame, -1);
-		Mix_Volume(musicchannel, 0);
+//		Mix_HaltChannel(-1);
+//		Mix_HaltMusic();
+//		Mix_Volume(musicchannel, 0);
+		musicchannel = Mix_PlayMusic(mendofgame, -1);
 	}
 
 	secsingame = 0;
 	secstart = 0;
 
-	int ldstop = 0;
+//	int ldstop = 0;
 
 	do {
 		SDL_Rect rc;
 
-		ld += 4 * fpsr;
+/*		ld += 4 * fpsr;
 		if((int)ld > config.musicvol) ld = config.musicvol;
 		if(menabled == 1 && ldstop == 0) {
-			Mix_Volume(musicchannel, (int)ld);
+//			Mix_Volume(musicchannel, (int)ld);
 			if((int)ld == config.musicvol) ldstop = 1;
 		}
-
+*/
  		rc.x = -xofs;
 		rc.y = 0;
 
@@ -4648,22 +4648,26 @@ void game_playgame()
 //nop90
 	game_swash();
 	
-	if(pmenu == 1 && menabled == 1) {
-		Mix_HaltChannel(menuchannel);
-		pmenu = 0;
-	}
-
 	do {
+
+		if (pmenu == 1) {
+			pboss = 0;
+			pgardens = 0;
+			pmenu = 0;
+		}
+
 		if(forcepause == 0) {
 			game_updanims();
 			game_updnpcs();
 		}
+
 		game_checktrigger();
 		game_checkinputs();
 
 		if(forcepause == 0) game_handlewalking();
 
 		game_updatey();
+
 		game_drawview();
 
 		game_updmusic();
@@ -4719,8 +4723,8 @@ void game_processtrigger(int trignum)
 
 			if(tmap > 0) {
 				if(menabled == 1 && config.effects == 1) {
-					int snd = Mix_PlayChannel(-1, sfx[snddoor], 0);
-					Mix_Volume(snd, config.effectsvol);
+					/* int snd = */ Mix_PlayChannel(-1, sfx[snddoor], 0);
+//					Mix_Volume(snd, config.effectsvol);
 				}
 
 				game_loadmap(tmap);
@@ -4817,7 +4821,7 @@ void game_saveloadnew()
 								pacademy = 0;
 								pcitadel = 0;
 
-								Mix_HaltChannel(-1);
+//								Mix_HaltChannel(-1);
 
 								secsingame = 0;
 								saveslot = currow - 1;
@@ -5090,6 +5094,7 @@ void game_showlogos()
 
 void game_swash()
 {
+/*
 	float y;
 
 	y = 0;
@@ -5097,9 +5102,9 @@ void game_swash()
 	do {
 		y = y + 1 * fpsr;
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)y);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)y);
 		SDL_FillRect(videobuffer, NULL, 0);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
 
 		SDL_Flip(video);
 		SDL_PumpEvents();
@@ -5139,7 +5144,7 @@ void game_swash()
 			SDL_BlitSurface(cloudimg, &rcDest, videobuffer, NULL);
 		}
 
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
 		SDL_Flip(video);
 		SDL_PumpEvents();
 
@@ -5163,6 +5168,7 @@ void game_swash()
 	} while(1);
 
 	SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+*/
 }
 
 void game_theend()
@@ -5203,7 +5209,7 @@ void game_title(int mode)
 {
 	float xofs = 0;
 	int ticks, ticks1;// , keypause;
-	int cursel, ldstop;
+	int cursel;//, ldstop;
 	int x, y;
 
 	rcSrc.x = 0;
@@ -5211,8 +5217,8 @@ void game_title(int mode)
 	rcSrc.w = 320;
 	rcSrc.h = 240;
 
-	SDL_FillRect(videobuffer2, &rcSrc, 0);
-	SDL_FillRect(videobuffer3, &rcSrc, 0);
+//	SDL_FillRect(videobuffer2, &rcSrc, 0);
+//	SDL_FillRect(videobuffer3, &rcSrc, 0);
 
 	ticks = SDL_GetTicks();
 
@@ -5226,26 +5232,27 @@ void game_title(int mode)
 	ticks1 = ticks;
 
 	if(menabled == 1 && config.music == 1) {
-		Mix_Volume(musicchannel, 0);
-		Mix_Pause(musicchannel);
-
-		menuchannel = Mix_PlayChannel(-1, mmenu, -1);
-		Mix_Volume(menuchannel, config.musicvol);
+//		Mix_Volume(musicchannel, 0);
+//		Mix_Pause(musicchannel);
+//		menuchannel = Mix_PlayChannel(-1, mmenu, -1);
+//		Mix_VolumeMusic(config.musicvol);
+//		Mix_PauseMusic();
+		menuchannel = Mix_PlayMusic(mmenu, -1);
 		pmenu = 1;
 	}
 
-	ldstop = 0;
+//	ldstop = 0;
 
-	float ld = 0;
+//	float ld = 0;
 	do {
 		SDL_Rect rc;
 
-		ld += 4.0 * fpsr;
-		if(ld > config.musicvol) ld = config.musicvol;
-		if(menabled == 1 && ldstop == 0) {
-			Mix_Volume(menuchannel, (int)ld);
-			if((int)ld == config.musicvol) ldstop = 1;
-		}
+//		ld += 4.0 * fpsr;
+//		if(ld > config.musicvol) ld = config.musicvol;
+//		if(menabled == 1 && ldstop == 0) {
+//			Mix_VolumeMusic((int)ld);
+//			if((int)ld == config.musicvol) ldstop = 1;
+//		}
 
 		rc.x = -xofs;
 		rc.y = 0;
@@ -5277,16 +5284,16 @@ void game_title(int mode)
 
 		SDL_BlitSurface(itemimg[15], NULL, videobuffer, &rc);
 
-		float yf = 255.0;
+/*		float yf = 255.0;
 		if(ticks < ticks1 + 1000) {
 			yf = 255.0 * ((float)(ticks - ticks1) / 1000.0);
 			if(y < 0.0) yf = 0.0;
 			if(y > 255.0) yf = 255.0;
 		}
-
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)yf);
-		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
+*/
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)yf);
+//		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 
 		tickspassed = ticks;
 		ticks = SDL_GetTicks();
@@ -5354,12 +5361,11 @@ void game_title(int mode)
 
 	itemticks = ticks + 210;
 
-	if(menabled == 1 && config.music == 1) {
-		Mix_HaltChannel(menuchannel);
-		Mix_Resume(musicchannel);
-		Mix_Volume(musicchannel, config.musicvol);
-		pmenu = 0;
-	}
+//	if(menabled == 1 && config.music == 1) {
+//		Mix_HaltMusic();
+//		Mix_Volume(musicchannel, config.musicvol);
+//		pmenu = 0;
+//	}
 }
 
 void game_updanims()
@@ -5430,7 +5436,8 @@ void game_updmusic()
 		if(iplaysound == mgardens && pgardens) iplaysound = NULL;
 
 		if(iplaysound != NULL) {
-			Mix_HaltChannel(musicchannel);
+//			Mix_HaltChannel(musicchannel);
+//			Mix_HaltMusic();
 
 			pboss = 0;
 			pgardens = 0;
@@ -5441,24 +5448,25 @@ void game_updmusic()
 			if(iplaysound == mboss) pboss = 1;
 			if(iplaysound == mgardens) pgardens = 1;
 
-			musicchannel = Mix_PlayChannel(-1, iplaysound, -1);
-			Mix_Volume(musicchannel, config.musicvol);
-		} else {
-			if(!Mix_Playing(musicchannel)) {
+//			Mix_VolumeMusic(config.musicvol);
+			musicchannel = Mix_PlayMusic(iplaysound, -1);
+		}
+/* else {
+			if(!Mix_PlayingMusic()) {
 				loopseta = loopseta + 1;
 				if(loopseta == 4) loopseta = 0;
 
 				if(pgardens == 1) {
-					Mix_HaltChannel(musicchannel);
-					if(pgardens == 1 && loopseta == 0) musicchannel = Mix_PlayChannel(-1, mgardens, 0);
-					if(pgardens == 1 && loopseta == 1) musicchannel = Mix_PlayChannel(-1, mgardens2, 0);
-					if(pgardens == 1 && loopseta == 2) musicchannel = Mix_PlayChannel(-1, mgardens3, 0);
-					if(pgardens == 1 && loopseta == 3) musicchannel = Mix_PlayChannel(-1, mgardens4, 0);
+					Mix_HaltMusic();
+//					Mix_VolumeMusic(config.musicvol);
+					if(pgardens == 1 && loopseta == 0) musicchannel = Mix_PlayMusic(mgardens, 0);
+					if(pgardens == 1 && loopseta == 1) musicchannel = Mix_PlayMusic(mgardens2, 0);
+					if(pgardens == 1 && loopseta == 2) musicchannel = Mix_PlayMusic(mgardens3, 0);
+					if(pgardens == 1 && loopseta == 3) musicchannel = Mix_PlayMusic(mgardens4, 0);
 				}
-
-				Mix_Volume(musicchannel, config.musicvol);
 			}
 		}
+*/
 	}
 }
 
@@ -5847,8 +5855,8 @@ void game_updnpcs()
 							npcinfo[i].attackattempt = ticks + 100;
 							if((int)(RND() * 2) == 0) {
 								if(menabled == 1 && config.effects == 1) {
-									int snd = Mix_PlayChannel(-1, sfx[sndenemyhit], 0);
-									Mix_Volume(snd, config.effectsvol);
+									/* int snd = */ Mix_PlayChannel(-1, sfx[sndenemyhit], 0);
+//									Mix_Volume(snd, config.effectsvol);
 								}
 
 								npcinfo[i].attacking = 1;
@@ -5872,8 +5880,8 @@ void game_updnpcs()
 
 								if((dist) < 24) {
 									if(menabled == 1 && config.effects == 1) {
-										int snd = Mix_PlayChannel(-1, sfx[sndbite], 0);
-										Mix_Volume(snd, config.effectsvol);
+										/* int snd = */ Mix_PlayChannel(-1, sfx[sndbite], 0);
+//										Mix_Volume(snd, config.effectsvol);
 									}
 
 									npcinfo[i].attacking = 1;
@@ -5976,8 +5984,8 @@ void game_updnpcs()
 
 									if((dist) < 36) {
 										if(menabled == 1 && config.effects == 1) {
-											int snd = Mix_PlayChannel(-1, sfx[sndbite], 0);
-											Mix_Volume(snd, config.effectsvol);
+											/* int snd = */ Mix_PlayChannel(-1, sfx[sndbite], 0);
+//											Mix_Volume(snd, config.effectsvol);
 										}
 
 										npcinfo[i].attacking = 1;
@@ -6150,8 +6158,8 @@ void game_updnpcs()
 
 								if((dist) < 24) {
 									if(menabled == 1 && config.effects == 1) {
-										int snd = Mix_PlayChannel(-1, sfx[sndbite], 0);
-										Mix_Volume(snd, config.effectsvol);
+										/* int snd = */ Mix_PlayChannel(-1, sfx[sndbite], 0);
+//										Mix_Volume(snd, config.effectsvol);
 									}
 
 									npcinfo[i].attacking = 1;
@@ -6223,8 +6231,8 @@ void game_updnpcs()
 							npcinfo[i].attackattempt = ticks + 100;
 							if((int)(RND() * 2) == 0) {
 								if(menabled == 1 && config.effects == 1) {
-									int snd = Mix_PlayChannel(-1, sfx[sndenemyhit], 0);
-									Mix_Volume(snd, config.effectsvol);
+									/* int snd = */ Mix_PlayChannel(-1, sfx[sndenemyhit], 0);
+//									Mix_Volume(snd, config.effectsvol);
 								}
 
 								npcinfo[i].attacking = 1;
@@ -6248,8 +6256,8 @@ void game_updnpcs()
 							npcinfo[i].attackattempt = ticks + 100;
 							if((int)(RND() * 2) == 0) {
 								if(menabled == 1 && config.effects == 1) {
-									int snd = Mix_PlayChannel(-1, sfx[sndice], 0);
-									Mix_Volume(snd, config.effectsvol);
+									/* int snd = */ Mix_PlayChannel(-1, sfx[sndice], 0);
+//									Mix_Volume(snd, config.effectsvol);
 								}
 								npcinfo[i].attacking = 1;
 								npcinfo[i].attackframe = 0;
@@ -6556,7 +6564,7 @@ void game_updspells()
 
 				for(int f = 0; f <= 3; f++) {
 					if(fr > f * 4 && fr < f * 4 + 16) {
-						float alf = 255;
+//						float alf = 255;
 
 						if(fr < f * 4 + 8) {
 							int fi = (int)((fr - f * 4) * 3) % 4;
@@ -6571,7 +6579,7 @@ void game_updspells()
 							rcDest.x = xloc;
 							rcDest.y = yloc;
 
-							alf = 255 * ((fr - f * 4) / 8);
+//							alf = 255 * ((fr - f * 4) / 8);
 						}
 
 						if(fr >= f * 4 + 8) {
@@ -6597,13 +6605,13 @@ void game_updspells()
 							rcDest.x = xloc;
 							rcDest.y = yloc;
 
-							alf = 255;
+//							alf = 255;
 						}
 
 						if(xloc > -16 && xloc < 304 && yloc > -16 && yloc < 224) {
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, alf);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, alf);
 							SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 							if(spellinfo[i].damagewho == 0) {
 								for(int e = 1; e <= lastnpc; e++) {
@@ -6617,8 +6625,8 @@ void game_updspells()
 										if(npcinfo[e].hp > 0 && npcinfo[e].pause < ticks) {
 											game_damagenpc(e, damage, 1);
 											if(menabled == 1 && config.effects == 1) {
-												int snd = Mix_PlayChannel(-1, sfx[sndice], 0);
-												Mix_Volume(snd, config.effectsvol);
+												/* int snd = */ Mix_PlayChannel(-1, sfx[sndice], 0);
+//												Mix_Volume(snd, config.effectsvol);
 											}
 										}
 									}
@@ -6645,8 +6653,8 @@ void game_updspells()
 										game_addFloatIcon(99, postinfo[e][0], postinfo[e][1]);
 
 										if(menabled == 1 && config.effects == 1) {
-											int snd = Mix_PlayChannel(-1, sfx[sndice], 0);
-											Mix_Volume(snd, config.effectsvol);
+											/* int snd = */ Mix_PlayChannel(-1, sfx[sndice], 0);
+//											Mix_Volume(snd, config.effectsvol);
 										}
 									}
 								}
@@ -6697,8 +6705,8 @@ void game_updspells()
 							if(npcinfo[e].hp > 0 && npcinfo[e].pause < ticks) {
 								game_damagenpc(e, damage, 1);
 								if(menabled == 1 && config.effects == 1) {
-									int snd = Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
-									Mix_Volume(snd, config.effectsvol);
+									/* int snd = */ Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
+//									Mix_Volume(snd, config.effectsvol);
 								}
 							}
 						}
@@ -6741,8 +6749,8 @@ void game_updspells()
 						if(player.hp > 0) {
 							game_damageplayer(damage);
 							if(menabled == 1 && config.effects == 1) {
-								int snd = Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
-								Mix_Volume(snd, config.effectsvol);
+								/* int snd = */ Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
+//								Mix_Volume(snd, config.effectsvol);
 							}
 						}
 					}
@@ -6769,8 +6777,8 @@ void game_updspells()
 							game_addFloatIcon(99, postinfo[e][0], postinfo[e][1]);
 
 							if(menabled == 1 && config.effects == 1) {
-								int snd = Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
-								Mix_Volume(snd, config.effectsvol);
+								/* int snd = */ Mix_PlayChannel(-1, sfx[sndmetalhit], 0);
+//								Mix_Volume(snd, config.effectsvol);
 							}
 						}
 					}
@@ -6820,8 +6828,8 @@ void game_updspells()
 											if(npcinfo[e].hp > 0 && npcinfo[e].pause < ticks) {
 												game_damagenpc(e, damage, 1);
 												if(menabled == 1 && config.effects == 1) {
-													int snd = Mix_PlayChannel(-1, sfx[sndrocks], 0);
-													Mix_Volume(snd, config.effectsvol);
+													/* int snd = */ Mix_PlayChannel(-1, sfx[sndrocks], 0);
+//													Mix_Volume(snd, config.effectsvol);
 												}
 											}
 										}
@@ -6849,8 +6857,8 @@ void game_updspells()
 											game_addFloatIcon(99, postinfo[e][0], postinfo[e][1]);
 
 											if(menabled == 1 && config.effects == 1) {
-												int snd = Mix_PlayChannel(-1, sfx[sndrocks], 0);
-												Mix_Volume(snd, config.effectsvol);
+												/* int snd = */ Mix_PlayChannel(-1, sfx[sndrocks], 0);
+//												Mix_Volume(snd, config.effectsvol);
 											}
 										}
 									}
@@ -6867,7 +6875,7 @@ void game_updspells()
 			// crystal
 			if(spellnum == 5) {
 
-				float fra = (32 - spellinfo[i].frame);
+//				float fra = (32 - spellinfo[i].frame);
 				int fr = (int)((spellinfo[i].frame) * 2) % 8;
 
 				rcSrc.x = fr * 32;
@@ -6878,13 +6886,13 @@ void game_updspells()
 				rcDest.x = player.px - 4;
 				rcDest.y = player.py + 16 - 48;
 
-				int f = 160;
-				if(fra < 8) f = 192 * fra / 8;
-				if(fra > 24) f = 192 * (1 - (fra - 24) / 8);
+//				int f = 160;
+//				if(fra < 8) f = 192 * fra / 8;
+//				if(fra > 24) f = 192 * (1 - (fra - 24) / 8);
 
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, f);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, f);
 				SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 				spellinfo[i].frame = spellinfo[i].frame - 0.3 * fpsr;
 				if(spellinfo[i].frame < 0) {
@@ -6957,9 +6965,9 @@ void game_updspells()
 			if(spellnum == 6 && forcepause == 0) {
 
 				if(spellinfo[i].frame > 16) {
-					float fr = (32 - spellinfo[i].frame);
+//					float fr = (32 - spellinfo[i].frame);
 
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192 * sin(3.14159 * fr / 4));
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192 * sin(3.14159 * fr / 4));
 
 					rcSrc.x = 16 * (int)(RND() * 2);
 					rcSrc.y = 80;
@@ -6977,9 +6985,9 @@ void game_updspells()
 						SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
 					}
 
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 				} else {
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192);
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192);
 
 					rcSrc.x = 16 * (int)(RND() * 2);
 					rcSrc.y = 80;
@@ -7015,7 +7023,7 @@ void game_updspells()
 						if(xloc < -1 || yloc < -1 || xloc > 304 || yloc > 224) spellinfo[i].ballon[ff] = 0;
 					}
 
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 				}
 
 				spellinfo[i].frame = spellinfo[i].frame - 0.2 * fpsr;
@@ -7036,8 +7044,8 @@ void game_updspells()
 								if(player.hp > 0) game_damageplayer(damage);
 
 								if(menabled == 1 && config.effects == 1) {
-									 int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-									 Mix_Volume(snd, config.effectsvol);
+									 /* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//									 Mix_Volume(snd, config.effectsvol);
 								}
 							}
 						}
@@ -7365,13 +7373,13 @@ void game_updspellsunder()
 				rcDest.x = spellinfo[i].enemyx - 12;
 				rcDest.y = spellinfo[i].enemyy - 8;
 
-				int f = 160;
-				if(fra < 8) f = 160 * fra / 8;
-				if(fra > 24) f = 160 * (1 - (fra - 24) / 8);
+//				int f = 160;
+//				if(fra < 8) f = 160 * fra / 8;
+//				if(fra > 24) f = 160 * (1 - (fra - 24) / 8);
 
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, f);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, f);
 				SDL_BlitSurface(spellimg, &rcSrc, videobuffer, &rcDest);
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 				spellinfo[i].frame = spellinfo[i].frame - 0.2 * fpsr;
 				if(spellinfo[i].frame < 0) spellinfo[i].frame = 0;
@@ -7448,15 +7456,15 @@ void game_updspellsunder()
 
 				if(fr > 32) fr = 32;
 
-				float s = 8;
-				if(spellinfo[i].frame < 8) s = spellinfo[i].frame;
+//				float s = 8;
+//				if(spellinfo[i].frame < 8) s = spellinfo[i].frame;
 
 				int fra = (int)fr;
 
 				for(int f = 0; f <= 4; f++) {
 					for(int x = 0; x <= fra; x += 2) {
 						if(spellinfo[i].legalive[f] >= x) {
-							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192 * sin(3.14159 * x / 32) * s / 8);
+//							SDL_SetAlpha(spellimg, SDL_SRCALPHA, 192 * sin(3.14159 * x / 32) * s / 8);
 
 							float an = 360 / 5 * f + x / 32 * 180;
 
@@ -7495,8 +7503,8 @@ void game_updspellsunder()
 											if(npcinfo[e].hp > 0 && npcinfo[e].pause < ticks) {
 												game_damagenpc(e, damage, 1);
 												if(menabled == 1 && config.effects == 1) {
-													int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-													Mix_Volume(snd, config.effectsvol);
+													/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//													Mix_Volume(snd, config.effectsvol);
 												}
 											}
 										}
@@ -7514,8 +7522,8 @@ void game_updspellsunder()
 											game_damageplayer(damage);
 
 											if(menabled == 1 && config.effects == 1) {
-												int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-												Mix_Volume(snd, config.effectsvol);
+												/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//												Mix_Volume(snd, config.effectsvol);
 											}
 										}
 									}
@@ -7539,8 +7547,8 @@ void game_updspellsunder()
 											setClipRect(clipbg2, rcSrc.x, rcSrc.y, rcSrc.w, rcSrc.h, 0);//SDL_FillRect(clipbg2, &rcSrc, SDL_MapRGB(clipbg2->format,0,0,0));
 
 											if(menabled == 1 && config.effects == 1) {
-												int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-												Mix_Volume(snd, config.effectsvol);
+												/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//												Mix_Volume(snd, config.effectsvol);
 											}
 
 											game_addFloatIcon(99, postinfo[e][0], postinfo[e][1]);
@@ -7552,7 +7560,7 @@ void game_updspellsunder()
 					}
 				}
 
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 
 				spellinfo[i].frame = spellinfo[i].frame - 0.2 * fpsr;
 				if(spellinfo[i].frame < 0) spellinfo[i].frame = 0;
@@ -7578,7 +7586,7 @@ void game_updspellsunder()
 					if(alpha < 0) alpha = 0;
 					if(alpha > 255) alpha = 255;
 
-					SDL_SetAlpha(spellimg, SDL_SRCALPHA, alpha);
+//					SDL_SetAlpha(spellimg, SDL_SRCALPHA, alpha);
 
 					rcSrc.x = 16 * (int)(RND() * 2);
 					rcSrc.y = 80;
@@ -7604,8 +7612,8 @@ void game_updspellsunder()
 								if(player.hp > 0) {
 									game_damageplayer(damage);
 									if(menabled == 1 && config.effects == 1) {
-										int snd = Mix_PlayChannel(-1, sfx[sndfire], 0);
-										Mix_Volume(snd, config.effectsvol);
+										/* int snd = */ Mix_PlayChannel(-1, sfx[sndfire], 0);
+//										Mix_Volume(snd, config.effectsvol);
 									}
 								}
 
@@ -7616,7 +7624,7 @@ void game_updspellsunder()
 
 				}
 
-				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
+//				SDL_SetAlpha(spellimg, SDL_SRCALPHA, 255);
 				spellinfo[i].frame = spellinfo[i].frame - 0.5 * fpsr;
 				if(spellinfo[i].frame < 0) spellinfo[i].frame = 0;
 
@@ -7705,8 +7713,8 @@ void sys_initialize()
 	clipbg = SDL_CreateRGBSurface(SDL_SWSURFACE, 320, 240, config.scr_bpp, video->format->Rmask, video->format->Gmask, video->format->Bmask, video->format->Amask);
 */
 	videobuffer = SDL_DisplayFormat(video);//SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
-	videobuffer2 = SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
-	videobuffer3 = SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
+//	videobuffer2 = SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
+//	videobuffer3 = SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
 	mapbg = SDL_CreateRGBSurface(config.hwsurface, 320, 240, 32, 0, 0, 0, 0);
 
 	clipbg = initClip();//SDL_CreateRGBSurface(SDL_SWSURFACE, 320, 240, 32, 0, 0, 0, 0);
@@ -7740,10 +7748,14 @@ void sys_initialize()
 	inventoryimg = IMG_Load("romfs:/art/inventory.bmp");
 	SDL_SetColorKey(inventoryimg, SDL_SRCCOLORKEY, SDL_MapRGB(inventoryimg->format, 255, 0, 255));
 
-	logosimg = SDL_DisplayFormat(video);
-	theendimg = SDL_DisplayFormat(video);
+	//logosimg = SDL_DisplayFormat(video);
+	//theendimg = SDL_DisplayFormat(video);
 	logosimg = IMG_Load("romfs:/art/logos.bmp");
 	theendimg = IMG_Load("romfs:/art/theend.bmp");
+
+	configwindow = IMG_Load("romfs:/art/configwindow.bmp");
+	SDL_SetColorKey(configwindow, SDL_SRCCOLORKEY, SDL_MapRGB(configwindow->format, 255, 0, 255));
+	SDL_SetAlpha(configwindow, SDL_SRCALPHA, 160);
 
 
 	sys_LoadTiles();
@@ -7769,7 +7781,10 @@ void sys_initialize()
 		playerattackofs[3][i][0] = 1; // i + 1
 		playerattackofs[3][i][1] = -sin(3.14159 * 2 * (i + 1) / 16) * 2;
 	}
-	 sys_setupAudio();
+	sys_setupAudio();
+
+	Mix_VolumeMusic(config.musicvol);
+	Mix_Volume(-1, config.effectsvol);
 
 }
 
@@ -7777,28 +7792,32 @@ void sys_line(SDL_Surface *buffer, int x1, int y1, int x2, int y2, int col)
 {
 //	unsigned int *temp;
 
-	SDL_LockSurface(buffer);
+if (buffer == videobuffer) {
+		drawline(x1, y1, x2, y2, col);
+	} else {
+		SDL_LockSurface(buffer);
 
-	int xdif = x2 - x1;
-	int ydif = y2 - y1;
+		int xdif = x2 - x1;
+		int ydif = y2 - y1;
 
-	if(xdif == 0) {
-		for(int y = y1; y <= y2; y++) {
-//			temp = buffer->pixels + y * buffer->pitch + x1 * buffer->format->BytesPerPixel;
-//			*temp = col;
-			PutPixel32(buffer, x1, y, col);
+		if(xdif == 0) {
+			for(int y = y1; y <= y2; y++) {
+	//			temp = buffer->pixels + y * buffer->pitch + x1 * buffer->format->BytesPerPixel;
+	//			*temp = col;
+				PutPixel32(buffer, x1, y, col);
+			}
 		}
-	}
 
-	if(ydif == 0) {
-		for(int x = x1; x <= x2; x++) {
-//			temp = buffer->pixels + y1 * buffer->pitch + x * buffer->format->BytesPerPixel;
-//			*temp = col;
-			PutPixel32(buffer, x, y1, col);
+		if(ydif == 0) {
+			for(int x = x1; x <= x2; x++) {
+	//			temp = buffer->pixels + y1 * buffer->pitch + x * buffer->format->BytesPerPixel;
+	//			*temp = col;
+				PutPixel32(buffer, x, y1, col);
+			}
 		}
-	}
 
-	SDL_UnlockSurface(buffer);
+		SDL_UnlockSurface(buffer);
+	}
 }
 
 void sys_LoadAnims()
@@ -8142,23 +8161,25 @@ void sys_setupAudio()
 
 	if(menabled == 1) {
 		sys_progress(0, 21);
-#if !defined (DEBUG) && !defined (NOMUSIC)  
+#if !defined (NOMUSIC)  
 		mboss = Mix_LoadWAV("romfs:/music/boss.ogg");
 		sys_progress(1, 21);
 		mgardens = Mix_LoadWAV("romfs:/music/gardens.ogg");
-		sys_progress(2, 21);
-		mgardens2 = Mix_LoadWAV("romfs:/music/gardens2.ogg");
-		sys_progress(3, 21);
-		mgardens3 = Mix_LoadWAV("romfs:/music/gardens3.ogg");
 		sys_progress(4, 21);
-		mgardens4 = Mix_LoadWAV("romfs:/music/gardens4.ogg");
-		sys_progress(5, 21);
 		mendofgame = Mix_LoadWAV("romfs:/music/endofgame.ogg");
 		sys_progress(6, 21);
 		mmenu = Mix_LoadWAV("romfs:/music/menu.ogg");
 		sys_progress(7, 21);
 #else
+		mboss = Mix_LoadWAV("romfs:/music/boss.ogg");
 		sys_progress(1, 21);
+//		mgardens = Mix_LoadWAV("romfs:/music/gardens.ogg"); //too big. Halt the emulator
+		mgardens = Mix_LoadWAV("romfs:/music/menu.ogg");
+		sys_progress(4, 21);
+		mendofgame = Mix_LoadWAV("romfs:/music/endofgame.ogg");
+		sys_progress(6, 21);
+		mmenu = Mix_LoadWAV("romfs:/music/menu.ogg");
+		sys_progress(7, 21);
 #endif
 		sfx[0] = Mix_LoadWAV("romfs:/sfx/bite.ogg");
 		sys_progress(8, 21);
@@ -8289,8 +8310,8 @@ void sys_update()
 		player.spelldamage = player.level * 13 / 10;
 
 		if(menabled == 1 && config.effects == 1) {
-			int snd = Mix_PlayChannel(-1, sfx[sndpowerup], 0);
-			Mix_Volume(snd, config.effectsvol);
+			/* int snd = */ Mix_PlayChannel(-1, sfx[sndpowerup], 0);
+//			Mix_Volume(snd, config.effectsvol);
 		}
 	}
 
@@ -8345,8 +8366,8 @@ void sys_update()
 		player.hpflashb = player.hpflashb + 1;
 		if(player.hpflashb == 2) player.hpflashb = 0;
 		if(menabled == 1 && config.effects == 1 && player.hpflashb == 0 && player.hp < player.maxhp / 4) {
-			int snd = Mix_PlayChannel(-1, sfx[sndbeep], 0);
-			Mix_Volume(snd, config.effectsvol);
+			/* int snd = */ Mix_PlayChannel(-1, sfx[sndbeep], 0);
+//			Mix_Volume(snd, config.effectsvol);
 		}
 	}
 

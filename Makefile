@@ -46,7 +46,8 @@ CFLAGS	:=	-g -Wall -O2 -mword-relocations \
 			-fomit-frame-pointer -ffast-math \
 			$(ARCH) 
 
-CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS -DNOMUSIC -DDEBUG
+CFLAGS	+=	$(INCLUDE) -DARM11 -D_3DS 
+#-  -DDEBUG -DNOMUSIC
  
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11 -findirect-inlining -fpermissive\
 						 -funroll-loops -fmessage-length=0

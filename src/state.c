@@ -64,7 +64,7 @@ int state_load_player(int slotnum)
 
 	sprintf(line, player_sav, slotnum);
 
-	playera[slotnum].level = 0;
+//	playera[slotnum].level = 0;
 
 	fp = fopen(line, "rb");
 	if(fp) {
