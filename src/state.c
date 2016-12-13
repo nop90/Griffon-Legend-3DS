@@ -49,6 +49,7 @@ int state_load(int slotnum)
 		fread( roomlocks, sizeof(roomlocks), 1, fp );
 
 		fclose(fp);
+		player.pause = SDL_GetTicks();
 		return 1; // success
 	}
 
@@ -77,6 +78,7 @@ int state_load_player(int slotnum)
 	}
 
 	fclose(fp);
+
 	return 0; // fail
 }
 

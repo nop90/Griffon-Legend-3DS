@@ -83,7 +83,7 @@ typedef struct {
 	int	exp;
 	int	nextlevel;
 
-	int	pause;
+	unsigned int pause;
 
 	float	itemselshade;
 	int	ysort;
@@ -119,9 +119,9 @@ typedef struct {
 	int	cframe;
 	int	onmap;		// is this npc set to be genned in the mapfile
 
-	int	ticks;
-	int	pause;
-	int	shake;
+	unsigned int ticks;
+	unsigned int pause;
+	unsigned int shake;
 
 	int	movementmode;
 	int	walkdir;
@@ -133,9 +133,9 @@ typedef struct {
 	float	attackframe;
 	int	cattackframe;
 	float	attackspd;
-	int	attackdelay;
-	int	attacknext;
-	int	attackattempt;
+	unsigned int attackdelay;
+	unsigned int attacknext;
+	unsigned int attackattempt;
 
 	int	spelldamage;
 	int	attackdamage;
@@ -147,10 +147,10 @@ typedef struct {
 	float	swayspd;
 	float	headtargetx[4];
 	float	headtargety[4];
-	int	castpause;
+	unsigned int castpause;
 
 	// firehydra specific
-	int	attacknext2[4];
+	unsigned int attacknext2[4];
 	int	attacking2[4];
 	int	attackframe2[4];
 

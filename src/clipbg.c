@@ -8,15 +8,17 @@ void setClipRect(u32 *clip, u32 x, u32 y, u32 w, u32 h, u32 col){
 	int i,j;
 	for (i=x; i<x+w; i++)
 		for (j=y; j<y+h; j++)
-			clip[i*240+j] = col;
+			if(i*240+j < 240*320) clip[i*240+j] = col;
 }
 
 void setClipVal(u32 *clip, u32 x, u32 y, u32 col){
-	clip[x*240+y] = col;
+	if(x*240+y < 240*320) clip[x*240+y] = col;
 }
 
 u32 getClipVal(u32 *clip, u32 x, u32 y){
-  return clip[x*240+y];
+  if(x*240+y < 240*320) 
+	return clip[x*240+y];
+  else return 0;
 }
 
 u32* initClip(void){
@@ -41,14 +43,13 @@ void clipLine(u32 *clip, u32 x1, u32 y1, u32 x2, u32 y2, u32 col){
 
 	if(xdif == 0) {
 		for(int y = y1; y <= y2; y++) {
-			clip[x1*240+y] = col;
+			if(x1*240+y < 240*320) clip[x1*240+y] = col;
 		}
 	}
 
 	if(ydif == 0) {
 		for(int x = x1; x <= x2; x++) {
-			clip[x*240+y1] = col;
+			if(x*240+y1 < 240*320) clip[x*240+y1] = col;
 		}
 	}
-//printf("Clipline x:%i y:%i\n", x1,y1);
 }

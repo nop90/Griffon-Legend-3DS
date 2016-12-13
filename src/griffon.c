@@ -104,14 +104,15 @@ SDL_Surface *fontchr[224][5]; // 256 - 32
 SDL_Surface *itemimg[21], *windowimg;
 SDL_Surface *spellimg;
 
-int itemselon, curitem, itemticks;
+int itemselon, curitem;
+unsigned int itemticks;
 float itemyloc;
 int selenemyon, curenemy, forcepause;
 int roomlock; // set to disable any room jumps while in the room
 int scriptflag[100][10], saveslot;	// script, flag
 
 // timer related - move to local later
-int ticks, tickspassed, nextticks;
+unsigned int ticks, tickspassed, nextticks;
 float fp, fps, fpsr;
 int secsingame, secstart;
 
@@ -951,7 +952,7 @@ void game_checkhit()
 
 void game_checkinputs()
 {
-	int ntickdelay;
+	unsigned int ntickdelay;
 
 	ntickdelay = 175;
 
@@ -1273,7 +1274,7 @@ void game_configmenu()
 {
 	SDL_Rect rc;
 	int cursel, curselt, ofullscreen;
-	int ticks1; //, keypause, tickwait 
+	unsigned int ticks1; //, keypause, tickwait 
 
 	cursel = MINCURSEL;
 
@@ -3128,7 +3129,7 @@ void game_drawview()
 void game_endofgame()
 {
 	float xofs = 0;
-	int ticks1;
+	unsigned int ticks1;
 
 	ticks = SDL_GetTicks();
 
@@ -3218,7 +3219,7 @@ void game_endofgame()
 				sys_print(videobuffer, story2[i], x, yy, 4);
 			}
 
-			if(yy < 10 && i == 25) break;
+			if(yy < 10 && i == 26) break;
 		}
 
 		int ya = 255;
@@ -3354,7 +3355,8 @@ void game_endofgame()
 
 void game_eventtext(char *stri)
 {
-	int x, fr, pauseticks, bticks;
+	int x, fr;
+	unsigned int pauseticks, bticks;
 
 //	SDL_FillRect(videobuffer2, NULL, 0);
 //	SDL_FillRect(videobuffer3, NULL, 0);
@@ -4474,7 +4476,8 @@ void game_newgame()
 {
 	float xofs = 0;
 	float ld = 0, add;
-	int ticks, cnt = 0;
+	unsigned int ticks;
+	int cnt = 0;
 
 //	SDL_FillRect(videobuffer2, NULL, 0);
 //	SDL_FillRect(videobuffer3, NULL, 0);
@@ -4524,7 +4527,7 @@ void game_newgame()
 			y--;
 		}
 
-		for(int i = 0; i <= 37; i++) {
+		for(int i = 0; i <= 47; i++) {
 			int yy, x;
 
 			yy = y + i * 10;
@@ -4533,7 +4536,7 @@ void game_newgame()
 				sys_print(videobuffer, story[i], x, yy, 4);
 			}
 
-			if(yy < 10 && i == 37) goto __exit_do;
+			if(yy < 10 && i == 47) goto __exit_do;
 		}
 
 		SDL_BLITVIDEO(videobuffer, NULL, video, NULL);
@@ -4743,7 +4746,7 @@ void game_saveloadnew()
 {
 	float y; int yy;
 	int currow, curcol, lowerlock;
-	int ticks, ticks1;//, tickpause;
+	unsigned int ticks, ticks1;//, tickpause;
 	bool stateload = false;
 
 	clouddeg = 0;
@@ -4928,7 +4931,6 @@ void game_saveloadnew()
 				sy = sy + 11;
 				cc = 0;
 
-				sprintf(line, "Health: %i/%i", playera[ff].hp, playera[ff].maxhp);
 				sys_print(videobuffer, line, sx, sy, cc);
 
 				if(playera[ff].level == 22)
@@ -5041,7 +5043,7 @@ void game_saveloadnew()
 void game_showlogos()
 {
 	float y;
-	int ticks1;
+	unsigned int ticks1;
 
 	ticks = SDL_GetTicks();
 	ticks1 = ticks;
@@ -5094,7 +5096,7 @@ void game_showlogos()
 
 void game_swash()
 {
-/*
+
 	float y;
 
 	y = 0;
@@ -5132,7 +5134,7 @@ void game_swash()
 	do {
 		y = y + 1 * fpsr;
 
-		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)(y * 25));
+//		SDL_SetAlpha(videobuffer, SDL_SRCALPHA, (int)(y * 25));
 		SDL_BlitSurface(mapbg, NULL, videobuffer, NULL);
 
 		if(cloudson == 1) {
@@ -5167,8 +5169,7 @@ void game_swash()
 		if(y > 10) break;
 	} while(1);
 
-	SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
-*/
+//	SDL_SetAlpha(videobuffer, SDL_SRCALPHA, 255);
 }
 
 void game_theend()
@@ -5208,7 +5209,7 @@ void game_theend()
 void game_title(int mode)
 {
 	float xofs = 0;
-	int ticks, ticks1;// , keypause;
+	unsigned int ticks, ticks1;// , keypause;
 	int cursel;//, ldstop;
 	int x, y;
 
