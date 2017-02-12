@@ -72,7 +72,12 @@ void soundClose()
 			SFX[i].used=false;
 		}
 	}
-	if(soundEnabled)csndExit();
+	if(soundEnabled)
+	{
+		CSND_SetPlayState(15, 0);//Stop music audio playback.
+		csndExecCmds(0);
+		csndExit();
+	}
 }
 
 FILE* openFile(const char* fn, const char* mode)

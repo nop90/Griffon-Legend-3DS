@@ -105,7 +105,7 @@ export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 			-I$(CURDIR)/$(BUILD)
 
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib)
-export APP_ICON := $(TOPDIR)/3ds/icon.png
+export APP_ICON := $(TOPDIR)/resources/icon.png
 export _3DSXFLAGS += --smdh=$(CURDIR)/$(TARGET).smdh
 export _3DSXFLAGS += --romfs=$(CURDIR)/$(ROMFS)
 
@@ -127,11 +127,11 @@ $(TARGET)-strip.elf: $(BUILD)
 	@$(STRIP) $(TARGET).elf -o $(TARGET)-strip.elf
 #---------------------------------------------------------------------------------
 cci: $(TARGET)-strip.elf
-	@makerom -f cci -rsf 3ds/$(TARGET).rsf -target d -exefslogo -elf $(TARGET)-strip.elf -o $(TARGET).3ds
+	@makerom -f cci -rsf resources/$(TARGET).rsf -target d -exefslogo -elf $(TARGET)-strip.elf -o $(TARGET).3ds
 	@echo "built ... 3ds"
 #---------------------------------------------------------------------------------
 cia: $(TARGET)-strip.elf
-	@makerom -f cia -o $(TARGET).cia -elf $(TARGET)-strip.elf -rsf 3ds/$(TARGET).rsf -icon 3ds/icon.bin -banner 3ds/banner.bin -exefslogo -target t
+	@makerom -f cia -o $(TARGET).cia -elf $(TARGET)-strip.elf -rsf resources/$(TARGET).rsf -icon resources/icon.bin -banner resources/banner.bin -exefslogo -target t
 	@echo "built ... cia"
 #---------------------------------------------------------------------------------
 else

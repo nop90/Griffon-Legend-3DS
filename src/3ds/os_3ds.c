@@ -38,7 +38,7 @@ int SDL_Init(int flag) //returns 0 on success, -1 on failure
 #endif 
 
 		// Read the language field from the config savegame.
-		CFGU_GetSystemLanguage(&language);
+//		CFGU_GetSystemLanguage(&language);
 		
     }
 	if(flag & SDL_INIT_AUDIO)

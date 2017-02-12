@@ -22,7 +22,6 @@
 #include <sys/stat.h>
 
 #include "SDL_3ds.h"
-//#include <SDL/SDL_rotozoom.h>
 
 #include "griffon.h"
 #include "config.h"
@@ -7723,7 +7722,6 @@ void sys_initialize()
 	
 	for(int i = 0; i <= 3; i++) {
 		char name[128];
-
 		sprintf(name, "romfs:/art/map%i.bmp", i + 1);
 //		mapimg[i] = SDL_DisplayFormat(video);
 		mapimg[i] = IMG_Load(name);
@@ -7757,7 +7755,6 @@ void sys_initialize()
 	configwindow = IMG_Load("romfs:/art/configwindow.bmp");
 	SDL_SetColorKey(configwindow, SDL_SRCCOLORKEY, SDL_MapRGB(configwindow->format, 255, 0, 255));
 	SDL_SetAlpha(configwindow, SDL_SRCALPHA, 160);
-
 
 	sys_LoadTiles();
 	sys_LoadTriggers();
@@ -7996,7 +7993,6 @@ void sys_LoadFont()
 	SDL_Surface *font;
 
 	font = IMG_Load("romfs:/art/font.bmp");
-
 	for(int i = 32; i <= 255; i++)
 		for(int f = 0; f <= 4; f++) {
 			int i2 = i - 32;
@@ -8170,18 +8166,8 @@ void sys_setupAudio()
 		mendofgame = Mix_LoadWAV("romfs:/music/endofgame.ogg");
 		sys_progress(6, 21);
 		mmenu = Mix_LoadWAV("romfs:/music/menu.ogg");
+
 		sys_progress(7, 21);
-#else
-		mboss = Mix_LoadWAV("romfs:/music/boss.ogg");
-		sys_progress(1, 21);
-//		mgardens = Mix_LoadWAV("romfs:/music/gardens.ogg"); //too big. Halt the emulator
-		mgardens = Mix_LoadWAV("romfs:/music/menu.ogg");
-		sys_progress(4, 21);
-		mendofgame = Mix_LoadWAV("romfs:/music/endofgame.ogg");
-		sys_progress(6, 21);
-		mmenu = Mix_LoadWAV("romfs:/music/menu.ogg");
-		sys_progress(7, 21);
-#endif
 		sfx[0] = Mix_LoadWAV("romfs:/sfx/bite.ogg");
 		sys_progress(8, 21);
 		sfx[1] = Mix_LoadWAV("romfs:/sfx/crystal.ogg");
@@ -8211,6 +8197,7 @@ void sys_setupAudio()
 		sfx[13] = Mix_LoadWAV("romfs:/sfx/fire.ogg");
 		sys_progress(21, 21);
 		sfx[14] = Mix_LoadWAV("romfs:/sfx/beep.ogg");
+#endif
 	}
 //	SDL_SetAlpha(loadimg, 0 | SDL_SRCALPHA, 255);
 
